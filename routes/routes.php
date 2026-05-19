@@ -5,15 +5,10 @@ use Slim\App;
 use App\Controllers\ProgrammeController;
 use App\Controllers\InterestController;
 use App\Controllers\AuthController;
+use App\Middleware\AuthMiddleware;
 
 return function (App $app) {
 
- $app->get('/test-login', function ($request, $response) {
-
-        $response->getBody()->write("LOGIN ROUTE FILE WORKING");
-
-        return $response;
-    });
 
     /*
     |--------------------------------------------------------------------------
@@ -63,4 +58,24 @@ return function (App $app) {
     // Admin login
     $app->post('/login', [$authController, 'login']);
 
+        /*
+    |--------------------------------------------------------------------------
+    | PROTECTED ADMIN ROUTE
+    |--------------------------------------------------------------------------
+    */
+
+    $app->get('/admin/dashboard', function ($request, $response) {
+
+        $user = $request->getAttribute('user');
+
+        $response->getBody()->write(json_encode([
+            'status' => true,
+            'message' => 'Welcome Admin',
+            'user' => $user
+        ]));
+
+        return $response
+            ->withHeader('Content-Type', 'application/json');
+
+    })->add(new AuthMiddleware());
 };
