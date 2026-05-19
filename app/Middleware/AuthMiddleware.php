@@ -71,6 +71,26 @@ class AuthMiddleware
 
             $request = $request->withAttribute('user', $decoded);
 
+            /*
+|--------------------------------------------------------------------------
+| ROLE CHECK
+|--------------------------------------------------------------------------
+*/
+
+if ($decoded->role !== 'admin') {
+
+    $response = new \Slim\Psr7\Response();
+
+    $response->getBody()->write(json_encode([
+        'status' => false,
+        'message' => 'Access denied'
+    ]));
+
+    return $response
+        ->withHeader('Content-Type', 'application/json')
+        ->withStatus(403);
+}
+
         } catch (\Exception $e) {
 
             $response = new \Slim\Psr7\Response();
