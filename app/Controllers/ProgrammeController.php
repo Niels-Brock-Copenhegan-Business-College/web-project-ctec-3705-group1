@@ -202,4 +202,30 @@ class ProgrammeController
             ->withHeader('Content-Type', 'application/json')
             ->withStatus(200);
     }
+        /*
+    |--------------------------------------------------------------------------
+    | DELETE PROGRAMME
+    |--------------------------------------------------------------------------
+    */
+
+    public function deleteProgramme(Request $request, Response $response, $args)
+    {
+        $programmeId = $args['id'];
+
+        /*
+        |--------------------------------------------------------------------------
+        | SUCCESS RESPONSE
+        |--------------------------------------------------------------------------
+        */
+
+        $response->getBody()->write(json_encode([
+            'status' => true,
+            'message' => 'Programme deleted successfully',
+            'programme_id' => $programmeId
+        ]));
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+    }
 }

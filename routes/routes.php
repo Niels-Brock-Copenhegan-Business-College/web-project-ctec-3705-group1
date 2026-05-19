@@ -41,8 +41,12 @@ return function (App $app) {
     $app->post('/programmes', [$programmeController, 'createProgramme'])
         ->add(new AuthMiddleware());
  
-        // Update programme (Admin only)
+    // Update programme (Admin only)
     $app->put('/programmes/{id}', [$programmeController, 'updateProgramme'])
+        ->add(new AuthMiddleware());
+
+    // Delete programme (Admin only)
+    $app->delete('/programmes/{id}', [$programmeController, 'deleteProgramme'])
         ->add(new AuthMiddleware());
     /*
     |--------------------------------------------------------------------------
