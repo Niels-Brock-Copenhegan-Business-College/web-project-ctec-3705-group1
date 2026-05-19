@@ -94,4 +94,112 @@ class ProgrammeController
             ->withHeader('Content-Type', 'application/json')
             ->withStatus(200);
     }
+        /*
+    |--------------------------------------------------------------------------
+    | CREATE PROGRAMME
+    |--------------------------------------------------------------------------
+    */
+
+    public function createProgramme(Request $request, Response $response)
+    {
+        $data = $request->getParsedBody();
+
+        /*
+        |--------------------------------------------------------------------------
+        | VALIDATION
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            empty($data['title']) ||
+            empty($data['department']) ||
+            empty($data['duration'])
+        ) {
+
+            $response->getBody()->write(json_encode([
+                'status' => false,
+                'message' => 'All fields are required'
+            ]));
+
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(400);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | SUCCESS RESPONSE
+        |--------------------------------------------------------------------------
+        */
+
+        $response->getBody()->write(json_encode([
+            'status' => true,
+            'message' => 'Programme created successfully',
+            'programme' => [
+                'title' => $data['title'],
+                'department' => $data['department'],
+                'duration' => $data['duration']
+            ]
+        ]));
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(201);
+    }
+
+        /*
+    |--------------------------------------------------------------------------
+    | UPDATE PROGRAMME
+    |--------------------------------------------------------------------------
+    */
+
+    public function updateProgramme(Request $request, Response $response, $args)
+    {
+        $programmeId = $args['id'];
+
+        $data = $request->getParsedBody();
+
+        /*
+        |--------------------------------------------------------------------------
+        | VALIDATION
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            empty($data['title']) ||
+            empty($data['department']) ||
+            empty($data['duration'])
+        ) {
+
+            $response->getBody()->write(json_encode([
+                'status' => false,
+                'message' => 'All fields are required'
+            ]));
+
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(400);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | SUCCESS RESPONSE
+        |--------------------------------------------------------------------------
+        */
+
+        $response->getBody()->write(json_encode([
+            'status' => true,
+            'message' => 'Programme updated successfully',
+            'programme_id' => $programmeId,
+            'updated_data' => [
+                'title' => $data['title'],
+                'department' => $data['department'],
+                'duration' => $data['duration']
+            ]
+        ]));
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+    }
 }

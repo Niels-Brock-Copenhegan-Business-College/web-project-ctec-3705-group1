@@ -37,6 +37,13 @@ return function (App $app) {
     // Search programmes
     $app->get('/search', [$programmeController, 'searchProgrammes']);
 
+    // Create programme (Admin only)
+    $app->post('/programmes', [$programmeController, 'createProgramme'])
+        ->add(new AuthMiddleware());
+ 
+        // Update programme (Admin only)
+    $app->put('/programmes/{id}', [$programmeController, 'updateProgramme'])
+        ->add(new AuthMiddleware());
     /*
     |--------------------------------------------------------------------------
     | INTEREST ROUTES
