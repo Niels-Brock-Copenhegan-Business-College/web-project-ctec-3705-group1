@@ -4,8 +4,16 @@ use Slim\App;
 
 use App\Controllers\ProgrammeController;
 use App\Controllers\InterestController;
+use App\Controllers\AuthController;
 
 return function (App $app) {
+
+ $app->get('/test-login', function ($request, $response) {
+
+        $response->getBody()->write("LOGIN ROUTE FILE WORKING");
+
+        return $response;
+    });
 
     /*
     |--------------------------------------------------------------------------
@@ -16,6 +24,8 @@ return function (App $app) {
     $programmeController = new ProgrammeController();
 
     $interestController = new InterestController();
+
+    $authController = new AuthController();
 
     /*
     |--------------------------------------------------------------------------
@@ -43,3 +53,14 @@ return function (App $app) {
 
     // Remove interest
     $app->delete('/interest/{id}', [$interestController, 'removeInterest']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | AUTH ROUTES
+    |--------------------------------------------------------------------------
+    */
+
+    // Admin login
+    $app->post('/login', [$authController, 'login']);
+
+};

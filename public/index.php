@@ -6,11 +6,10 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
-$app->get('/users', function ($request, $response) {
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-    $response->getBody()->write("USERS ROUTE WORKING");
+$app->addBodyParsingMiddleware();
 
-    return $response;
-});
+(require __DIR__ . '/../routes/routes.php')($app);
 
 $app->run();
