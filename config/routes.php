@@ -1,5 +1,11 @@
 <?php
 
+// This file defines all application routes for the Student Course Hub.
+// It registers public student routes, authentication routes, staff-only routes,
+// and admin-only routes, each protected by the appropriate middleware.
+// It also loads the Twig middleware and maps each URL path to the correct controller action.
+
+
 declare(strict_types=1);
 
 use Slim\App;
