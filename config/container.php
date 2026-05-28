@@ -1,5 +1,10 @@
 <?php
 
+// This file defines all dependency injection container bindings for the application.
+// It registers services such as the database connection, Twig templating engine,
+// global Twig variables, custom Twig extensions, and all controllers.
+// These bindings allow Slim to automatically resolve and inject dependencies.
+
 declare(strict_types=1);
 
 use App\Models\Database;
