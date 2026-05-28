@@ -1,5 +1,10 @@
 <?php
 
+// This controller handles all admin functionality for the Student Course Hub.
+// It manages staff accounts, programmes, modules, staff profiles, mailing lists,
+// interest registrations, and the admin dashboard. It also includes validation
+// helpers and image upload handling for admin-managed resources.
+
 declare(strict_types=1);
 
 namespace App\Controllers;
