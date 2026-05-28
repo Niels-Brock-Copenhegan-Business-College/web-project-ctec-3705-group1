@@ -1,5 +1,10 @@
 <?php
 
+// This controller handles all authentication logic for the system.
+// It displays the login form, processes login requests with CSRF checking,
+// verifies admin or staff credentials, manages session creation, redirects
+// users based on their role, and handles secure logout.
+
 declare(strict_types=1);
 
 namespace App\Controllers;
