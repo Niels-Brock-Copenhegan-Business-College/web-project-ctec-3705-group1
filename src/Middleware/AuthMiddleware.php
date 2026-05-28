@@ -1,5 +1,10 @@
 <?php
 
+// This middleware protects admin routes by ensuring a user is logged in with an admin role.
+// It redirects unauthenticated users to the login page, remembers the intended URL,
+// and prevents staff‑level accounts from accessing admin‑only areas by redirecting them
+// to the staff dashboard instead.
+
 declare(strict_types=1);
 
 namespace App\Middleware;
