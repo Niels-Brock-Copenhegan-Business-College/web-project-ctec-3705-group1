@@ -1,5 +1,11 @@
 <?php
 
+// This controller handles all student‑facing pages of the Student Course Hub.
+// It displays the home page with featured programmes, lists all published
+// programmes with filtering and search options, and shows detailed programme
+// pages including modules grouped by year and interest‑registration status.
+
+
 declare(strict_types=1);
 
 namespace App\Controllers;
