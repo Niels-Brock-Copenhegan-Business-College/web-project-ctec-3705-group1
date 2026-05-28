@@ -1,5 +1,11 @@
 <?php
 
+// This controller manages all staff-facing functionality in the Student Course Hub.
+// It displays the staff dashboard, shows modules and programmes led or taught by
+// the logged‑in staff member, and links admin accounts to staff profiles using
+// email matching. It also provides helper logic for retrieving the associated
+// staff record for the current session.
+
 declare(strict_types=1);
 
 namespace App\Controllers;
