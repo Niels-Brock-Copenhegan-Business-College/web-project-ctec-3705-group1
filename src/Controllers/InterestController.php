@@ -1,5 +1,10 @@
 <?php
 
+// This controller manages the interest registration system for prospective students.
+// It handles registering interest in a programme, withdrawing interest, validating
+// user input, preventing duplicate registrations, and allowing users to view and
+// manage their submitted interest records.
+
 declare(strict_types=1);
 
 namespace App\Controllers;
