@@ -1,5 +1,10 @@
 <?php
 
+// This middleware protects staff‑only routes by ensuring the user is logged in
+// and has either a staff or admin role. It redirects unauthenticated users to
+// the login page, remembers the intended URL, and blocks users without the
+// required role from accessing staff‑restricted areas.
+
 declare(strict_types=1);
 
 namespace App\Middleware;
